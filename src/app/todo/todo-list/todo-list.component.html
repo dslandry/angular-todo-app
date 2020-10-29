@@ -1,0 +1,40 @@
+<h1 class="text-center mt-4">List of Todos</h1>
+
+
+<div class="d-flex justify-content-center mt-4">
+    <p>There are 5 todos</p>
+</div>
+
+
+
+<div class="d-flex justify-content-center mt-2">
+    <button class="btn btn-primary ml-3" (click)="openModal(content)"> <i class="fa fa-plus-circle"
+            aria-hidden="true"></i> Add a Todo </button>
+</div>
+
+
+<ul *ngFor="let todo of todos$ |async" class="list-group mt-3" style="width: 50%; margin:auto">
+    <li class="list-group-item">
+        <app-todo-list-element [todo]="todo"></app-todo-list-element>
+    </li>
+
+</ul>
+
+<ng-template #content let-modal>
+    <div class="modal-header">
+        <h4 class="modal-title" id="modal-basic-title">Add a todo</h4>
+        <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body">
+        <app-todo-form></app-todo-form>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-outline-dark" (click)="modal.close('Save click')">Save</button>
+    </div>
+</ng-template>
+
+<!-- <button class="btn btn-lg btn-outline-primary" (click)="open(content)">Launch demo modal</button> -->
+
+<hr>
