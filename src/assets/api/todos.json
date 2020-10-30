@@ -1,20 +1,28 @@
 [
     {
-        "title": "This is an example of title",
-        "description": "This is an example of description",
+        "id":0,
+        "title": "Clean my shoes",
+        "description": "They are quite dirty",
         "creationDate": "12/10/2020",
-        "dueDate": "24/12/2020"
+        "dueDate": "21/12/2020",
+        "isChecked":false
     },
     {
-        "title": "This is an example of title",
-        "description": "This is an example of description",
+        "id":1,
+        "title": "Buy groceries",
+        "description": "Orange, pineaple, pasta, eggs",
         "creationDate": "12/10/2020",
-        "dueDate": "24/12/2020"
+        "dueDate": "29/12/2020",
+        "isChecked":false
+
     },
     {
-        "title": "This is an example of title",
-        "description": "This is an example of description",
+        "id":2,
+        "title": "Finish my project",
+        "description": "Build a responsive web app",
         "creationDate": "12/10/2020",
-        "dueDate": "24/12/2020"
+        "dueDate": "30/12/2020",
+        "isChecked":true
+
     }
 ]

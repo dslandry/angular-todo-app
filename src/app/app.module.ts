@@ -4,6 +4,7 @@ import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { TodoModule } from './todo/todo.module';
+import { SharedModule } from './shared/shared.module';
 
 @NgModule({
   declarations: [
@@ -12,7 +13,7 @@ import { TodoModule } from './todo/todo.module';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    TodoModule
+    TodoModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

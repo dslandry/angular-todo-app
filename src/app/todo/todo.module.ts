@@ -6,6 +6,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { TodoListElementComponent } from './todo-list-element/todo-list-element.component';
 import { FormsModule } from '@angular/forms';
 import { TodoFormComponent } from './todo-form/todo-form.component';
+import { SharedModule } from '../shared/shared.module';
 
 
 
@@ -15,7 +16,8 @@ import { TodoFormComponent } from './todo-form/todo-form.component';
     CommonModule,
     NgbModule,
     HttpClientModule,
-    FormsModule
+    FormsModule,
+    SharedModule
   ],
 })
 export class TodoModule { }

@@ -1,11 +1,9 @@
 <h1 class="text-center mt-4">List of Todos</h1>
 
-
+<!-- Count of  Todos-->
 <div class="d-flex justify-content-center mt-4">
-    <p>There are 5 todos</p>
+    <p>There are {{(todos$ |async)?.length || 0}} todos</p>
 </div>
-
-
 
 <div class="d-flex justify-content-center mt-2">
     <button class="btn btn-primary ml-3" (click)="openModal(content)"> <i class="fa fa-plus-circle"
@@ -13,13 +11,47 @@
 </div>
 
 
-<ul *ngFor="let todo of todos$ |async" class="list-group mt-3" style="width: 50%; margin:auto">
-    <li class="list-group-item">
-        <app-todo-list-element [todo]="todo"></app-todo-list-element>
-    </li>
+<div style="width: 50%; margin:auto">
+    <!-- filters and sort -->
+    <div class="d-flex justify-content-around mt-4">
+        <button class="btn btn-danger" [disabled]="!(todos$|async).some(isChecked)" (click)="clearChecked()">Clear all
+            checked items
+        </button>
+        <div>
+            <span>Sort by : </span>
+            <select name="sort" [(ngModel)]="sortDirection">
+                <option value="most-urgent">Most Urgent</option>
+                <option value="least-urgent">Least Urgent</option>
+            </select>
+        </div>
+        <div>
+            <span>Filter: </span>
+            <input type="text" name="filter" [(ngModel)]="filterString" placeholder="search">
+        </div>
 
-</ul>
+    </div>
 
+    <!-- List of Todos -->
+    <ul class="list-group mt-3"
+        *ngIf="todos$ |async |filter:'title':filterString |sortBy:'dueDate':sortDirection:'date' as todos; else loading">
+
+        <ng-container *ngIf="todos.length&& todos.length>0; else noItems">
+            <li *ngFor="let todo of todos " class="list-group-item">
+                <app-todo-list-element [todo]="todo"></app-todo-list-element>
+            </li>
+        </ng-container>
+        <ng-template #noItems>
+            <div class="jumbotron">
+                <h4 class="text-center">No Todo found</h4>
+            </div>
+        </ng-template>
+    </ul>
+    <ng-template #loading>loading...</ng-template>
+
+</div>
+
+
+<!-- Modal with form -->
 <ng-template #content let-modal>
     <div class="modal-header">
         <h4 class="modal-title" id="modal-basic-title">Add a todo</h4>
@@ -28,13 +60,9 @@
         </button>
     </div>
     <div class="modal-body">
-        <app-todo-form></app-todo-form>
+        <app-todo-form (formSubmit)="modal.close($event)"></app-todo-form>
     </div>
-    <div class="modal-footer">
+    <!-- <div class="modal-footer">
         <button type="button" class="btn btn-outline-dark" (click)="modal.close('Save click')">Save</button>
-    </div>
+    </div> -->
 </ng-template>
-
-<!-- <button class="btn btn-lg btn-outline-primary" (click)="open(content)">Launch demo modal</button> -->
-
-<hr>

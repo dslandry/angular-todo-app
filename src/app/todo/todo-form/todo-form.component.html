@@ -17,7 +17,7 @@
         <label for="dueDate">Due date</label>
         <div class="input-group">
             <input id="dueDate" class="form-control" placeholder="dd-mm-yyyy" name="dp" ngbDatepicker required
-                #dp="ngbDatepicker" [(ngModel)]="todo.dueDate">
+                #dp="ngbDatepicker" [(ngModel)]="dueDate">
             <div class="input-group-append">
                 <button class="btn btn-outline-secondary calendar" (click)="dp.toggle()" type="button"> <i
                         class="fa fa-calendar" aria-hidden="true"></i></button>
@@ -25,5 +25,7 @@
         </div>
     </div>
 
-    <button type="submit" class="btn btn-success" [disabled]="!todoForm.form.valid">Submit</button>
+    <div class="text-center">
+        <button type="submit" class="btn btn-success" [disabled]="!todoForm.form.valid">Submit</button>
+    </div>
 </form>
